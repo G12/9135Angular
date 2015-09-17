@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="g12Todo">
+    <head>
+        <title>My TO DO LIST</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="main.css" />
+        <script type="text/javascript" src="angular.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+        <script src="http://gregpike.net/demos/angular-local-storage/src/angular-local-storage.js"></script>
+        <script src="http://gregpike.net/demos/angular-local-storage/src/common.js"></script>
+    </head>
+    <body>
+        <header>My TO DO LIST</header>
+        <div ng-controller="TabsCtrl">
+            <div id="tabs">
+            <ul>
+                <li ng-repeat="tab in tabs" 
+                    ng-class="{active:isActiveTab(tab.url)}" 
+                    ng-click="onClickTab(tab)">{{tab.title}}</li>
+            </ul>
+            </div>
+            <div id="mainView">
+                <div ng-include="currentTab"></div>
+            </div>
+        </div>
+        <script type="text/ng-template" id="one.tpl.html">
+            <div ng-controller="TodoList as todo">
+                <form name="myForm" ng-submit="todo.addTodo()">
+                    <caption id="todotxt">Enter My To Do</caption>
+                    <input name="txtData" type="text" ng-model="todo.todoText" required
+                           ng-minlength="3" ng-maxlength="100">
+                    <button type="submit">Add</button>
+                </form>
+                <ul><li ng-repeat="todo_item in todo.todos">{{todo_item.text}}<button ng-click="todo.removeItem(todo_item)">Remove</button></li></ul>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="two.tpl.html">
+            <div ng-controller="TodoList2 as todo">
+                <form name="myForm" ng-submit="todo.addTodo()">
+                    <caption id="todotxt">Enter Your To Do</caption>
+                    <input name="txtData" type="text" ng-model="todo.todoText" required
+                           ng-minlength="3" ng-maxlength="100">
+                    <button type="submit">Add</button>
+                </form>
+                <ul><li ng-repeat="todo_item in todo.todos">{{todo_item.text}}<button ng-click="todo.removeItem(todo_item)">Remove</button></li></ul>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="three.tpl.html">
+            <div ng-controller="TodoList3 as todo">
+                <form name="myForm" ng-submit="todo.addTodo()">
+                    <caption id="todotxt">Enter Whos To Do</caption>
+                    <input name="txtData" type="text" ng-model="todo.todoText" required
+                           ng-minlength="3" ng-maxlength="100">
+                    <button type="submit">Add</button>
+                </form>
+                <ul><li ng-repeat="todo_item in todo.todos">{{todo_item.text}}<button ng-click="todo.removeItem(todo_item)">Remove</button></li></ul>
+            </div>
+        </script>
+
+    </body>
+</html>
