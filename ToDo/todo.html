@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="g12Todo">
+    <head>
+        <title>My TO DO LIST</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="angular.js"></script>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
+    <body>
+        <header>My TO DO LIST</header>
+        <div ng-controller="TodoList as todo">
+            <form name="myForm" ng-submit="todo.addTodo()">
+                <caption id="todotxt">Enter To Do</caption>
+                <input name="txtData" type="text" ng-model="todo.todoText" required
+                       ng-minlength="3" ng-maxlength="100">
+                <button type="submit">Add</button>
+                <div role="alert">
+                    <span class="error" ng-show="myForm.txtData.$error.minlength">
+                    Too short!</span>
+                    <span class="error" ng-show="myForm.txtData.$error.maxlength">
+                    Too long!</span>
+                </div>
+            </form>
+            <ul><li ng-repeat="todo_item in todo.todos">{{todo_item.text}}<button ng-click="todo.removeItem(todo_item)">Remove</button></li></ul>
+        </div>
+    </body>
+</html>
