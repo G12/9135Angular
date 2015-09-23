@@ -138,6 +138,10 @@
             return tabUrl === $scope.currentTab;
         };
     }]);
+
+    app.controller('AlertController',function(){
+        alert("Hello");
+    });
     
 })();
 

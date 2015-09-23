@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="g12Todo">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript" src="angular.js"></script>
+        <script type="text/javascript" src="app_org.js"></script>
+    </head>
+    <body>
+        <header>My TO DO LIST </header>
+        <div ng-controller="TodoList as todo">
+            <form name="myForm" ng-submit="todo.addTodo()">
+                <caption id="todotxt">Enter To Do</caption>
+                <!--<input my-enter name="txtData" type="text" ng-model="todo.todoText" required
+                       ng-minlength="3" ng-maxlength="100">-->
+               <input name="txtData" type="text" ng-model="todo.todoText" required
+                       ng-minlength="3" ng-maxlength="100">
+
+                <!--<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"
+                       tabindex="-1" />-->
+                
+                <button type="submit">Add</button>
+                <div role="alert">
+                    <span class="error" ng-show="myForm.txtData.$error.required">
+                    This field is Required! (please)</span>
+                    <span class="error" ng-show="myForm.txtData.$error.minlength">
+                    Too short!</span>
+                    <span class="error" ng-show="myForm.txtData.$error.maxlength">
+                    Too long!</span>
+                </div>
+                
+            </form>
+            <ul><li ng-repeat="todo_item in todo.todos">{{todo_item.text}}<button ng-click="todo.removeItem(todo_item)">Remove</button></li></ul>
+<!--
+            <tt>myForm.txtData.$valid = {{myForm.txtData.$valid}}</tt><br/>
+            <tt>myForm.txtData.$error = {{myForm.txtData.$error}}</tt><br/>
+            <tt>myForm.$valid = {{myForm.$valid}}</tt><br/>
+            <tt>myForm.$error.required = {{!!myForm.$error.required}}</tt><br/>
+            <tt>myForm.$error.minlength = {{!!myForm.$error.minlength}}</tt><br/>
+            <tt>myForm.$error.maxlength = {{!!myForm.$error.maxlength}}</tt><br/>
+-->
+        </div>
+    </body>
+</html>

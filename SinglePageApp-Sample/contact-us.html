@@ -1,0 +1,18 @@
+<div ng-controller='ContactCtrl as contacts' class="container">
+    <form ng-submit="contacts.addContact('hello')">
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input ng-model="contacts.email" type="email" class="form-control" id="exampleInputEmail1"
+                   placeholder="Email" required>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input ng-model="contacts.pswd" type="password" class="form-control" id="exampleInputPassword1"
+                   placeholder="Password" required>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <ul>
+        <li ng-repeat="contact in contacts.contact_list">{{contact.email}} - {{contact.pswd}}</li>
+    </ul>
+</div>
