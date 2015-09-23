@@ -1,12 +1,13 @@
 angular.module('demoApp', ['ngRoute'])
 
-    .controller('MainCtrl', function ($scope, $route, $routeParams, $location) {
+    .controller('MainCtrl',['$scope', '$route', '$routeParams', '$location',
+        function ($scope, $route, $routeParams, $location) {
 
         $scope.$route = $route;
         $scope.$location = $location;
         $scope.$routeParams = $routeParams;
 
-    }).controller('ContactCtrl', function ($scope, $routeParams) {
+    }]).controller('ContactCtrl',['$scope','$routeParams', function ($scope, $routeParams) {
 
         $scope.params = $routeParams;
 
@@ -16,7 +17,7 @@ angular.module('demoApp', ['ngRoute'])
         $scope.addContact = function (msg) {
             $scope.contact_list.push({email: $scope.email, pswd: $scope.pswd});
         }
-    }).config(function ($routeProvider, $locationProvider) {
+    }]).config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 templateUrl: 'home.html'
@@ -29,5 +30,5 @@ angular.module('demoApp', ['ngRoute'])
         $routeProvider.otherwise({
             redirectTo: '/'
         });
-    });
+    }]);
 
